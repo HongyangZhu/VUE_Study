@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>v-on</title>
+    <script type="text/JavaScript" src="../assets/js/vue.js"></script>
+  </head>
+  <body>
+    <h1>v-on 实例</h1>
+    为了让用户和你的应用进行交互，我们可以用 v-on
+    指令添加一个事件监听器，通过它调用在 Vue 实例中定义的方法：
+    <hr />
+    <div id="app">
+      <p>{{ message }}</p>
+      <button v-on:click="reverseMessage">反转消息</button>
+
+      <p>本场比赛得分:{{fenshu}}</p>
+      <button v-on:click="jiafen">加分</button>
+      <button @click="jianfen">减分</button>
+      <br />
+      <!-- 绑定键盘事件 回车键-->
+      <p>请输入要加的分数：</p>
+      <input type="text" v-on:keyup.enter="onEnter" v-model="fenshu2" />
+    </div>
+    <script type="text/JavaScript">
+      var app = new Vue({
+          el:'#app',
+          data: {
+                message: 'Hello Vue.js!',
+                fenshu:0,
+                fenshu2:1,
+          },
+            methods: {
+                reverseMessage: function () {
+                this.message = this.message.split('').reverse().join('');
+                },
+                // 加分
+                jiafen: function () {
+                this.fenshu++;
+                },
+                // 减分
+                jianfen: function () {
+                this.fenshu--;
+                },
+                // 回车按下方法
+                onEnter: function () {
+                  // 下面的写法 默认为字符串相加
+                  // this.fenshu=this.fenshu+this.fenshu2;
+                  // 利用parseInt() 进行数值运算
+                  this.fenshu=this.fenshu+parseInt(this.fenshu2);
+
+                }
+            }
+      })
+    </script>
+    <hr />
+    注意在 reverseMessage 方法中，我们更新了应用的状态，但没有触碰 DOM——所有的
+    DOM 操作都由 Vue 来处理，你编写的代码只需要关注逻辑层面即可。
+  </body>
+</html>

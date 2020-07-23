@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>v-bind</title>
+    <script type="text/JavaScript" src="../assets/js/vue.js"></script>
+    <style>
+      .classA {
+        color: red;
+      }
+      .classB {
+        color: blue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>v-bind 实例</h1>
+    <hr />
+    <div id="app">
+      <q>通过v-bind:src绑定图片的地址</q>
+      <p><img v-bind:src="imgsrc" height="200" /></p>
+      <q>通过:href绑定超链接的地址</q>
+      <p><a :href="webUrl" target="_blank">Vue.js</a></p>
+      <hr />
+
+      <div :class="className">bind class</div>
+      <hr />
+      <p>v-bind v-model</p>
+      <div :class="{classA:isOK}">bind class</div>
+      <input type="checkbox" id="isOK" v-model="isOK" />
+      <label for="isOK">isOK={{isOK}}</label>
+      <hr />
+      <span v-bind:title="message">
+        鼠标悬停几秒钟查看此处动态绑定的提示信息！
+      </span>
+    </div>
+    <script type="text/JavaScript">
+      var app = new Vue({
+          el:'#app',
+          data:{
+              message: '页面加载于 ' + new Date().toLocaleString(),
+              imgsrc:"https://cn.vuejs.org/images/logo.png",
+              webUrl:"https://cn.vuejs.org/",
+              className:"classA",
+              isOK:false
+          }
+      })
+    </script>
+    <hr />
+    <blockquote>
+      这里我们遇到了一点新东西。你看到的 v-bind attribute
+      被称为指令。指令带有前缀 v-，以表示它们是 Vue 提供的特殊
+      attribute。可能你已经猜到了，它们会在渲染的 DOM
+      上应用特殊的响应式行为。在这里，该指令的意思是：“将这个元素节点的 title
+      attribute 和 Vue 实例的 message property 保持一致”。
+      如果你再次打开浏览器的 JavaScript 控制台，输入 app.message =
+      '新消息'，就会再一次看到这个绑定了 title attribute 的 HTML
+      已经进行了更新。
+    </blockquote>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vue.directive</title>
+    <script type="text/JavaScript" src="../assets/js/vue.js"></script>
+  </head>
+
+  <body>
+    <h1>directive自定义指令</h1>
+    <hr />
+    <div id="app">
+      <div v-jspang="color">{{num}}</div>
+      <p><button @click="add">ADD</button></p>
+    </div>
+
+    <script type="text/JavaScript">
+
+      Vue.directive("jspang",function(el,binding) {
+        // console.log(el);
+        // console.log(binding);
+        el.style="color:"+binding.value;
+      });
+
+      var app = new Vue({
+          el:'#app',
+          data:{
+              num:10,
+              color:'red'
+          },
+          methods:{
+              add:function () {
+                  this.num++;
+              }
+          }
+      })
+    </script>
+    <hr />
+  </body>
+</html>

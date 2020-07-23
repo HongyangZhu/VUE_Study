@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-if v-else v-show</title>
+    <script type="text/JavaScript" src="../assets/js/vue.js">
+    </script>
+</head>
+
+<body>
+    <h1>v-if v-else v-show实例</h1>
+    <!-- 
+        v-if:是vue 的一个内部指令，指令用在我们的html中。
+        v-if用来判断是否加载html的DOM，比如我们模拟一个用户登录状态，在用户登录后现实用户名称。
+     -->
+    <hr>
+    <div id="app">
+        <div v-if="isLogin">{{isLogin}} 你好 已经登陆</div>
+        <div v-else="isLogin">你好 还没有登录</div>
+        <div v-show="isLogin">{{isLogin}} 你好 已经登陆</div>
+    </div>
+    <hr>
+    <p>v-if： 判断是否加载，可以减轻服务器的压力，在需要时加载。</p>
+    <p>v-show：调整css dispaly属性，可以使客户端操作更加流畅。</p>
+
+    <script type="text/JavaScript">
+        var app = new Vue({
+            el:'#app',
+            data:{
+               isLogin:false
+            }
+        })
+    </script>
+</body>
+
+</html>
